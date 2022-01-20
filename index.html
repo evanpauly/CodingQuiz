@@ -13,16 +13,33 @@
     <div id="start">
       <h1 class="title">Coding Quiz</h1>
       <p>Click the button to start the quiz</p>
-      <button class="btn">Start</button>
+      <button class="button">Start</button>
 
     </div id="questions">
-        <ul>
-            <li><button id="question1"></button></li>
-            <li><button id="question2"></button></li>
-            <li><button id="question3"></button></li>
-            <li><button id="question4"></button></li>
-        </ul>
+        <div class="question-box">
+            <ul>
+                <li><button id="question1" class="button"></button></li>
+                <li><button id="question2" class="button"></button></li>
+                <li><button id="question3" class="button"></button></li>
+                <li><button id="question4" class="button"></button></li>
+            </ul>
+        </div>    
     </div>
+
+    <div id="finish">
+        <h1>The Quiz is now Finished</h1>
+        <h2 id="score"></h2>
+        <form>Enter Initials for Records<input id="input" type="text"></form>
+        <button id="submit" class="button">Submit</button>
+    </div>
+    <div id="high-scores">
+        <h2>High Scores</h2>
+        <ol id="">
+
+        </ol>
+
+    </div>
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>
