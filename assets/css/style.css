@@ -12,3 +12,13 @@
   margin: 5px;
   align-items: center;
 }
+
+.scores {
+  display: flex;
+  align-items: flex-start;
+}
+
+#time {
+  display: flex;
+  align-items: flex-end;
+}
