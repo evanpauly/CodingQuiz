@@ -3,6 +3,7 @@ start = document.getElementById("start");
 startButton = document.getElementById("startButton");
 questions = document.getElementById("questions");
 questionBox = document.getElementById("question-box")
+questionDiv = document.getElementById("quiz-questions")
 response1 = document.getElementById("response1");
 response2 = document.getElementById("response2");
 response3 = document.getElementById("response3");
@@ -13,7 +14,7 @@ highScores = document.getElementById("high-scores");
 initials = document.getElementById("initials");
 count = 0;
 time = 60;
-countdown = document.getElementById("countdowns")
+countdown = document.getElementById("countdown")
 //declare variables end
 
 //declare questions start
@@ -39,30 +40,30 @@ var quizQuestions = [
         correctAnswer: 'response3'
     },
     {
-        question: "",
+        question: "How do you push changes in your file to GIT?",
         responses: {
-            response1: '',
-            response2: '',
-            response3: '',
-            response4: ''
+            response1: 'git push',
+            response2: 'git add to git',
+            response3: 'push git',
+            response4: 'git push origin main'
         },
         correctAnswer: 'response4'
     },
     {
-        question: "",
+        question: "How do you create a new file using the GIT command line?",
         responses: {
-            response1: '',
-            response2: '',
-            response3: '',
-            response4: ''
+            response1: 'create-file',
+            response2: 'mkdir',
+            response3: 'make file',
+            response4: 'mkfl'
         },
-        correctAnswer: 'response2'
+        correctAnswer: 'response2' 
     }
 ];
 //declare questions end
 
 //timer funtion start
-start.addEventListener("click", function(){
+start.addEventListener("click", function() {
 
     timer = setInterval(function functionTimer(){
         if (time === -1) {
@@ -83,12 +84,12 @@ start.addEventListener("click", function(){
 //check answer function start
 function validateAnswer(event) {
     var selectedAnswer = event.target.textContent
-    var activeQuestion = quizQuestions[count]
     var correctAnswer = quizQuestions[count].responses[4].correctAnswer
     count = count + 1
     if (selectedAnswer !== correctAnswer) {
-        time--;
+        time = time - 10
     }
+
     nextQuestion();
 }
 //check answer function end
@@ -100,18 +101,18 @@ function nextQuestion() {
         response2.addEventListener("click", validateAnswer);
         response3.addEventListener("click", validateAnswer);
         response4.addEventListener("click", validateAnswer);
-        questions.textContent = questionList[count].questions;
-        response1.textContent = questionList[count].responses[0].response1
-        response2.textContent = questionList[count].responses[1].response2
-        response3.textContent = questionList[count].responses[2].response3
-        response4.textContent = questionList[count].responses[3].response4
+        questions.textContent = quizQuestions[count].questions;
+        response1.textContent = quizQuestions[count].responses[0].response1
+        response2.textContent = quizQuestions[count].responses[1].response2
+        response3.textContent = quizQuestions[count].responses[2].response3
+        response4.textContent = quizQuestions[count].responses[3].response4
     } else {
         finish.setAttribute("class", "display");
         questionBox.setAttribute("class", "hidden");
         timeLeft = parseInt(time) + 1;
         finalScore.textContent = "You Scored " + timeLeft;
         submit.addEventListener("click", function() {
-            actualScore = input.value + "-" + timeLeft;
+            actualScore = input.value + "-" + timeLeft
             localStorage.setItem("highscore", actualScore)
             finish.setAttribute("class", "hidden")
             highScores.setAttribute("class", "display")
@@ -129,9 +130,9 @@ function nextQuestion() {
 
 startButton.addEventListener("click", function() {
     start.setAttribute("class", "hidden");
-    questionBox.setAttribute("class", "display");
+    questionDiv.setAttribute("class", "display");
 
-    question.textContent = quizQuestions[count].question;
+    questions.textContent = quizQuestions[count].questions;
     response1.textContent = quizQuestions[count].responses[0].response1;
     response2.textContent = quizQuestions[count].responses[0].response2;
     response3.textContent = quizQuestions[count].responses[0].response3;

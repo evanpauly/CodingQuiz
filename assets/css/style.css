@@ -5,6 +5,14 @@
   justify-content: center;
 }
 
+.hidden {
+  display: none;
+}
+
+.display {
+  display: flex;
+  align-items: center;
+}
 .button {
   color: white;
   background-color: purple;
