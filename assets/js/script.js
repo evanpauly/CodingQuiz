@@ -2,14 +2,18 @@
 start = document.getElementById("start");
 startButton = document.getElementById("startButton");
 questions = document.getElementById("questions");
+questionBox = document.getElementById("question-box")
 response1 = document.getElementById("response1");
 response2 = document.getElementById("response2");
 response3 = document.getElementById("response3");
 response4 = document.getElementById("response4");
+submit = document.getElementById("submit")
+finish = document.getElementById("finish");
 highScores = document.getElementById("high-scores");
 initials = document.getElementById("initials");
 count = 0;
 time = 60;
+countdown = document.getElementById("countdowns")
 //declare variables end
 
 //declare questions start
@@ -63,32 +67,29 @@ start.addEventListener("click", function(){
     timer = setInterval(function functionTimer(){
         if (time === -1) {
             clearTimeout(timer);
+            countdown.setAttribute("class", "hidden")
         } else if (count > 3) {
+            countdown.setAttribute("class", "hidden")
             clearTimeout(timer)
         } else {
+            countdown.innerHTML = time;
             time--;
+            console.log(time)
         }
     }, 1000)
 });
 //timer function end
 
-//generate questions function start
-function generateQuestions(questions){
-    var output = [];
-    var responses;
-
-    for(var i=0; i<questions.length; i++){
-
-        responses = [];
-
-
-    }
-}
-//generate questions function end
-
 //check answer function start
 function validateAnswer(event) {
-
+    var selectedAnswer = event.target.textContent
+    var activeQuestion = quizQuestions[count]
+    var correctAnswer = quizQuestions[count].responses[4].correctAnswer
+    count = count + 1
+    if (selectedAnswer !== correctAnswer) {
+        time--;
+    }
+    nextQuestion();
 }
 //check answer function end
 
@@ -99,7 +100,26 @@ function nextQuestion() {
         response2.addEventListener("click", validateAnswer);
         response3.addEventListener("click", validateAnswer);
         response4.addEventListener("click", validateAnswer);
-        
+        questions.textContent = questionList[count].questions;
+        response1.textContent = questionList[count].responses[0].response1
+        response2.textContent = questionList[count].responses[1].response2
+        response3.textContent = questionList[count].responses[2].response3
+        response4.textContent = questionList[count].responses[3].response4
+    } else {
+        finish.setAttribute("class", "display");
+        questionBox.setAttribute("class", "hidden");
+        timeLeft = parseInt(time) + 1;
+        finalScore.textContent = "You Scored " + timeLeft;
+        submit.addEventListener("click", function() {
+            actualScore = input.value + "-" + timeLeft;
+            localStorage.setItem("highscore", actualScore)
+            finish.setAttribute("class", "hidden")
+            highScores.setAttribute("class", "display")
+            var userScore = document.createElement("li")
+            userScore.textContent = localStorage.getItem("highscore")
+            highScores.append(userScore)
+        });
+        return
     }
 }
 //function to generate next question end
@@ -107,7 +127,14 @@ function nextQuestion() {
 
 //LAST SECTION OF CODE
 
-start.addEventListener("click", function() {
-    
+startButton.addEventListener("click", function() {
+    start.setAttribute("class", "hidden");
+    questionBox.setAttribute("class", "display");
 
-})
+    question.textContent = quizQuestions[count].question;
+    response1.textContent = quizQuestions[count].responses[0].response1;
+    response2.textContent = quizQuestions[count].responses[0].response2;
+    response3.textContent = quizQuestions[count].responses[0].response3;
+    response4.textContent = quizQuestions[count].responses[0].response4;
+    nextQuestion();
+});

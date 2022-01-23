@@ -13,31 +13,32 @@
         <a href="">High Scores</a>
     </div>
     <div id="time">
-        <p>Time: </p>
+        <p id="countdown">Time: </p>
     </div>
-    <div id="start">
-      <h1 class="title">Coding Quiz</h1>
+    <div id="start" class="display">
+      <h1>Coding Quiz</h1>
       <p>Click the button to start the quiz</p>
+      <div class="container">
       <button id="startButton" class="button">Start</button>
-
+      </div>
     </div id="questions">
-        <div class="question-box">
+        <div class="question-box container hidden">
             <ol>
                 <li><button id="response1" class="button"></button></li>
                 <li><button id="response2" class="button"></button></li>
                 <li><button id="response3" class="button"></button></li>
                 <li><button id="response4" class="button"></button></li>
-            </0l>
+            </ol>
         </div>    
     </div>
 
-    <div id="finish">
+    <div id="finish" class="hidden">
         <h1>The Quiz is now Finished</h1>
         <h2 id="score"></h2>
         <form>Enter Initials for Records<input id="initials" type="text"></form>
         <button id="submit" class="button">Submit</button>
     </div>
-    <div id="high-scores">
+    <div id="high-scores" class="hidden">
         <h2>High Scores</h2>
         <ol id="score-list">
 
