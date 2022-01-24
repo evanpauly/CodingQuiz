@@ -2,4 +2,4 @@
 
 ## Made with HTML, CSS, and JavaScript
 
-## Deployed App: 
+### Deployed App: https://evanpauly.github.io/CodingQuiz/
