@@ -2,7 +2,6 @@
 start = document.getElementById("start");
 startButton = document.getElementById("startButton");
 questions = document.getElementById("questions");
-questionBox = document.getElementById("question-box")
 questionDiv = document.getElementById("quiz-questions")
 response1 = document.getElementById("response1");
 response2 = document.getElementById("response2");
@@ -20,46 +19,42 @@ countdown = document.getElementById("countdown")
 //declare questions start
 var quizQuestions = [
     {
-        question: "What does JS stand for in web development?",
-        responses: {
-            response1: 'JavaScript',
-            response2: 'Just Salt',
-            response3: 'Just Saying',
-            response4: 'John and Sally'
-        },
-        correctAnswer: 'response1'
-    },
-    {
-        question: "What does CSS stand for in web development?",
-        responses: {
-            response1: 'Cannot Stand Soap',
-            response2: 'Could Songs Sing',
-            response3: 'Cascading Style Sheets',
-            response4: 'Cones Start Somewhere'
-        },
-        correctAnswer: 'response3'
-    },
-    {
-        question: "How do you push changes in your file to GIT?",
-        responses: {
-            response1: 'git push',
-            response2: 'git add to git',
-            response3: 'push git',
-            response4: 'git push origin main'
-        },
-        correctAnswer: 'response4'
-    },
-    {
-        question: "How do you create a new file using the GIT command line?",
-        responses: {
-            response1: 'create-file',
-            response2: 'mkdir',
-            response3: 'make file',
-            response4: 'mkfl'
-        },
-        correctAnswer: 'response2' 
-    }
-];
+        questions: "What does JS stand for in web development?",
+        responses: [
+            { response1: "JavaScript", correct: true },
+            { response2: "Just Salt", correct: false },
+            { response3: "Just Saying", correct: false },
+            { response4: "John and Sally", correct: false },
+            { correctAnswer: "JavaScript" }
+        ]
+    }, {
+        questions: "What does CSS stand for in web development?",
+        responses: [
+            { response1: "Cannot Stand Soap", correct: false },
+            { response2: "Could Songs Sing", correct: false },
+            { response3: "Cascading Style Sheets", correct: true },
+            { response4: "Cones Start Somewhere", correct: false },
+            { correctAnswer: "Cascading Style Sheets" },
+        ]
+    }, {
+        questions: "How do you push changes in your file to GIT?",
+        responses: [
+            { response1: "git push", correct: false },
+            { response2: "git add to git", correct: false },
+            { response3: "push git", correct: false },
+            { response4: "git push origin main", correct: true },
+            { correctAnswer: "git push origin main" }
+        ]   
+    }, {
+        questions: "How do you create a new file using the GIT command line?",
+        responses: [
+            { response1: "create-file", correct: false },
+            { response2: "mkdir", correct: true },
+            { response3: "make file", correct: false },
+            { response4: "mkfl", correct: false },
+            { correctAnswer: "mkdir" } 
+        ]
+}];
 //declare questions end
 
 //timer funtion start
@@ -108,15 +103,15 @@ function nextQuestion() {
         response4.textContent = quizQuestions[count].responses[3].response4
     } else {
         finish.setAttribute("class", "display");
-        questionBox.setAttribute("class", "hidden");
+        questionDiv.setAttribute("class", "hidden");
         timeLeft = parseInt(time) + 1;
-        finalScore.textContent = "You Scored " + timeLeft;
+        actualScore.textContent = "You Scored " + timeLeft;
         submit.addEventListener("click", function() {
-            actualScore = input.value + "-" + timeLeft
+            var actualScore = input.value + "-" + timeLeft
             localStorage.setItem("highscore", actualScore)
             finish.setAttribute("class", "hidden")
             highScores.setAttribute("class", "display")
-            var userScore = document.createElement("li")
+            var actualScore = document.createElement("li")
             userScore.textContent = localStorage.getItem("highscore")
             highScores.append(userScore)
         });
